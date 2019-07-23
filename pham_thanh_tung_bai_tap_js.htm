@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    div {
+        width: 50%;
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    select {
+        padding: 10px;
+        margin: 20px;
+        width: 30%;
+    }
+</style>
+
+<body>
+    <div>
+        <select id="selectBox1" onchange="getStudentByClassName()">
+            <option>--Choose--</option>
+        </select>
+        <select id="selectBox2"></select>
+    </div>
+</body>
+
+<script>
+    var students = [
+        { id: 1, name: 'tran van a', className: '.net' },
+        { id: 2, name: 'tran van b', className: '.net' },
+        { id: 3, name: 'tran van c', className: 'angular' },
+        { id: 4, name: 'tran van d', className: 'angular' },
+        { id: 5, name: 'tran van e', className: 'java' },
+        { id: 6, name: 'tran van f', className: 'java' },
+        { id: 7, name: 'tran van g', className: 'java' },
+        { id: 8, name: 'tran van h', className: 'test' },
+        { id: 9, name: 'tran van i', className: 'test' },
+        { id: 10, name: 'tran van j', className: 'test' }
+    ];
+    var selectBox1 = document.getElementById("selectBox1");
+    var selectBox2 = document.getElementById("selectBox2");
+    var myClassName = [];
+
+    students.forEach(student => {
+        if (myClassName.lastIndexOf(student.className) == -1)
+            myClassName.push(student.className);
+    });
+
+    myClassName.forEach(className => {
+        selectBox1.innerHTML += '<option value="' + className + '">' + className + '</option>';
+    });
+
+    function getStudentByClassName() {
+        selectBox2.innerHTML = "";
+        students.forEach(student => {
+            if (student.className == selectBox1.value)
+                selectBox2.innerHTML += '<option value="' + student.name + '">' + student.name + '</option>';
+        });
+    }
+
+
+</script>
+
+</html>
